@@ -7,6 +7,7 @@
 import serversConfig from "./servers.conf"
 import * as Types from "./types"
 
+const API_PROTOCOL = "https://"
 const API_GROUP = "turbo-tx-send"
 const ALLOWED_METHODS = ["GET", "POST", "OPTIONS", "HEAD"]
 const ALLOWED_NETWORKS: Types.Network[] = ["mainnet", "preprod", "preview"]
@@ -35,15 +36,13 @@ export default {
     if (group !== API_GROUP) return throw404()
     if (!ALLOWED_NETWORKS.includes(network)) return throw404()
 
-    const __servers = serversConfig[network].map((server, index) => ({ url: server, id: index }))
+    const __servers = serversConfig[network].map((server, index) => ({ url: API_PROTOCOL + server, id: index }))
     const servers = LOAD_BALANCER_ENABLED
       ? __servers
           .sort(() => 0.5 - Math.random())
           .slice(0, LOAD_BALANCER_SERVERS_COUNT)
           .sort((a, b) => a.id - b.id)
       : __servers
-
-    console.log(servers)
 
     try {
       // if (request.method === "GET") {
