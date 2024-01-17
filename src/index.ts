@@ -98,9 +98,8 @@ export default {
 
         // Adding request count to Stats, using waitUntil()
         const delayedProcessing = async () => {
-          const requestsCount = (await env.KV_TURBO_TX_SEND_COUNTER.get(status)) || 0
-          console.log(requestsCount)
-          await env.KV_TURBO_TX_SEND_COUNTER.put(status, (Number(requestsCount) + 1).toString())
+          const requestsCount = (await env.KV_TURBO_TX_SEND_COUNTER.get(`${network}::${status}`)) || 0
+          await env.KV_TURBO_TX_SEND_COUNTER.put(`${network}::${status}`, (Number(requestsCount) + 1).toString())
         }
         ctx.waitUntil(delayedProcessing())
 
