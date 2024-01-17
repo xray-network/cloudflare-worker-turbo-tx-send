@@ -1,4 +1,6 @@
 interface Env {
+	KV_TURBO_TX_SEND_COUNTER: KVNamespace
+
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
 	// MY_KV_NAMESPACE: KVNamespace;
 	//

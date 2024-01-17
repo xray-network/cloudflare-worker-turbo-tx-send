@@ -5,6 +5,7 @@
  */
 
 import serversConfig from "./servers.conf"
+import formTemplate from "./form.template"
 import * as Types from "./types"
 
 const API_PROTOCOL = "https://"
@@ -45,9 +46,15 @@ export default {
       : __servers
 
     try {
-      // if (request.method === "GET") {
-      //   return addCorsHeaders(new Response("HTML FORM"))
-      // }
+      if (request.method === "GET") {
+        return addCorsHeaders(
+          new Response(formTemplate.toString(), {
+            headers: {
+              "content-type": "text/html;charset=UTF-8",
+            },
+          })
+        )
+      }
 
       if (request.method === "POST") {
         const TX = await request.text()
@@ -87,11 +94,20 @@ export default {
         const nodesPicked = servers.length
         const nodesSuccess = txResponse.filter((result: any) => result?.done)
         const nodesIds = servers.map((server) => server.id)
+        const status = txsSuccess.length > 0 ? "success" : "failed"
+
+        // Adding request count to Stats, using waitUntil()
+        const delayedProcessing = async () => {
+          const requestsCount = (await env.KV_TURBO_TX_SEND_COUNTER.get(status)) || 0
+          console.log(requestsCount)
+          await env.KV_TURBO_TX_SEND_COUNTER.put(status, (Number(requestsCount) + 1).toString())
+        }
+        ctx.waitUntil(delayedProcessing())
 
         return addCorsHeaders(
           new Response(
             JSON.stringify({
-              status: txsSuccess.length > 0 ? "success" : "failed",
+              status,
               hash: txHash,
               network,
               accept_success: txsSuccess.length,

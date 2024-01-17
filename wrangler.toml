@@ -1,3 +1,7 @@
 name = "turbo-tx-send"
 main = "src/index.ts"
 compatibility_date = "2023-11-24"
+
+[[kv_namespaces]]
+binding = "KV_TURBO_TX_SEND_COUNTER"
+id = "6342ef1ac97540b7ba8a632b85211624"
