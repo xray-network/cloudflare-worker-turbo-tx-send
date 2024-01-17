@@ -48,7 +48,7 @@ export default {
     try {
       if (request.method === "GET") {
         return addCorsHeaders(
-          new Response(formTemplate.toString(), {
+          new Response(formTemplate(network), {
             headers: {
               "content-type": "text/html;charset=UTF-8",
             },

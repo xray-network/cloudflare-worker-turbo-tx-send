@@ -1,4 +1,6 @@
-const formTemplate = `
+import * as Types from "./types"
+
+const formTemplate = (network: Types.Network) => `
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,6 +79,12 @@ const formTemplate = `
     .button.reset:hover {
       background: #f3f3f3;
     }
+    .network {
+      float: right;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: italic;
+    }
     .visible {
       display: block;
     }
@@ -84,7 +92,7 @@ const formTemplate = `
 </head>
 <body>
 <div class="app">
-  <h4>XRAY | Graph | Turbo TX Send</h4>
+  <h4>XRAY | Graph | Turbo TX Send <span class="network">${network}</span></h4>
   <textarea class="textarea" rows="8" placeholder="Paste TX in CBOR (string) format..."></textarea>
   <div class="result">
     <div class="success"><strong>Success</strong></div>
@@ -114,7 +122,7 @@ const formTemplate = `
     if (tx) {
       resetForm(false)
       submit.classList.add("disabled")
-      var __response = await fetch("https://graph.xray.app/turbo-tx-send/mainnet", {
+      var __response = await fetch("https://graph.xray.app/turbo-tx-send/${network}", {
         method: "POST",
         headers: {
           "content-type": "text/plain"
@@ -126,7 +134,9 @@ const formTemplate = `
         if (__result.status === "success") {
           success.classList.add("visible")
           result.classList.add("visible")
-          hash.innerHTML = "Tx Hash: <a href='https://cardanoscan.io/transaction/" + __result.hash + "' target='_blank'>" + __result.hash + "</a>"
+          hash.innerHTML = "Tx Hash: <a href='https://${
+            network === "mainnet" ? "" : network === "preprod" ? "preprod." : "preview."
+          }cardanoscan.io/transaction/" + __result.hash + "' target='_blank'>" + __result.hash + "</a>"
           hash.classList.add("visible")
           response.innerHTML = JSON.stringify(__result)
           response.classList.add("visible")
