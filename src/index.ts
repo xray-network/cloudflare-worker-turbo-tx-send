@@ -50,7 +50,7 @@ export default {
         return addCorsHeaders(
           new Response(formTemplate(network), {
             headers: {
-              "content-type": "text/html;charset=UTF-8",
+              "Content-Type": "text/html;charset=UTF-8",
             },
           })
         )
@@ -120,7 +120,12 @@ export default {
                 lb_picked_ids: nodesIds,
                 details: txResponse,
               },
-            })
+            }),
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
           )
         )
       }
