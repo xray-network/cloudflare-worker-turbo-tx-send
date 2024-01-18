@@ -116,13 +116,16 @@ const formTemplate = (network: Types.Network) => `
   var response = document.getElementsByClassName("response")[0]
   var submit = document.getElementsByClassName("submit")[0]
   var reset = document.getElementsByClassName("reset")[0]
+  var currentURL = window.location.href
+  var cardanoscanNetwork = "${network === "mainnet" ? "" : network === "preprod" ? "preprod." : "preview."}"
+  var cardanoscanURL = "https://" + cardanoscanNetwork +  "cardanoscan.io/transaction/"
 
   async function submitForm() {
     var tx = textarea.value
     if (tx) {
       resetForm(false)
       submit.classList.add("disabled")
-      var __response = await fetch("https://graph.xray.app/turbo-tx-send/${network}", {
+      var __response = await fetch(currentURL, {
         method: "POST",
         headers: {
           "content-type": "text/plain"
@@ -134,9 +137,7 @@ const formTemplate = (network: Types.Network) => `
         if (__result.status === "success") {
           success.classList.add("visible")
           result.classList.add("visible")
-          hash.innerHTML = "Tx Hash: <a href='https://${
-            network === "mainnet" ? "" : network === "preprod" ? "preprod." : "preview."
-          }cardanoscan.io/transaction/" + __result.hash + "' target='_blank'>" + __result.hash + "</a>"
+          hash.innerHTML = "Tx Hash: <a href='" + cardanoscanURL + __result.hash + "' target='_blank'>" + __result.hash + "</a>"
           hash.classList.add("visible")
           response.innerHTML = JSON.stringify(__result)
           response.classList.add("visible")

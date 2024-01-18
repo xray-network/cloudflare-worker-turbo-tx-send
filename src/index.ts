@@ -72,7 +72,7 @@ export default {
           return Promise.race([postRequest, timeout])
         }
 
-        const sendRequestsAndGetStats = async (): Promise<any> => {
+        const sendRequestsAndGetStats = async (): Promise<any[]> => {
           const requests = servers.map(async (server, index) => {
             const body = JSON.stringify({
               jsonrpc: "2.0",
@@ -90,7 +90,7 @@ export default {
         const txsSuccess = txResponse.filter((tx: any) => tx?.done && tx?.response?.result?.transaction?.id)
         const txWithHash = txsSuccess.find((tx: any) => tx?.response?.result?.transaction?.id)
         const txHash = txWithHash?.response?.result?.transaction?.id || ""
-        const nodesTotal = serversConfig.length
+        const nodesTotal = serversConfig[network].length
         const nodesPicked = servers.length
         const nodesSuccess = txResponse.filter((result: any) => result?.done)
         const nodesIds = servers.map((server) => server.id)
@@ -113,7 +113,7 @@ export default {
               accept_failed: nodesPicked - txsSuccess.length,
               nodes: {
                 conn_success: nodesSuccess.length,
-                conn_failed: nodesPicked - nodesSuccess,
+                conn_failed: nodesPicked - nodesSuccess.length,
                 lb_enabled: LOAD_BALANCER_ENABLED,
                 lb_nodes_pool_size: nodesTotal,
                 lb_picked: nodesPicked,
