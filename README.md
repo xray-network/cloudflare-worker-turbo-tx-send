@@ -14,7 +14,7 @@
 ``` console
 git clone \
   --recurse-submodules \
-  https://github.com/xray-network/cloudflare-worker-turbo-tx-send/.git \
+  https://github.com/xray-network/cloudflare-worker-turbo-tx-send.git \
   && cd cloudflare-worker-turbo-tx-send
 ```
 ``` console
