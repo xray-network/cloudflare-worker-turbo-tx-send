@@ -3,7 +3,7 @@
 # XRAY | Graph | Turbo TX Send — Cloudflare Worker
 
 > [!WARNING]
-> **DEPRECATED:** The tool has been moved to XRAY | Graph | Output, which is an internal proprietary XRAY project that acts as a load balancer and proxy tool for API management and documentation in OpenAPI format
+> **DEPRECATED:** The tool has been moved to XRAY | Graph | Output, which is an internal proprietary XRAY project that acts as a load balancer and proxy tool for API access management and documentation in OpenAPI format
 
 > [!NOTE]
 > XRAY | Graph | Turbo TX Send — Accelerating TXs sending for Cardano blockchain. Sending TXs to nodes that are evenly distributed geographically AND have a small queue in Mempool gives a higher probability of hitting the blockchain sooner
