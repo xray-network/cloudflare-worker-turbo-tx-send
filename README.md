@@ -21,13 +21,13 @@ git clone \
 cp src/servers.conf.example.ts src/servers.conf.ts
 ```
 
-### Edit [wrangler.toml](https://github.com/xray-network/cloudflare-worker-output-load-balancer/blob/main/wrangler.toml)
+### Edit [wrangler.toml](https://github.com/xray-network/cloudflare-worker-turbo-tx-send/blob/main/wrangler.toml)
 
 ```
 change KV_TURBO_TX_SEND_COUNTER id
 ```
 
-### Edit [servers.conf.ts](https://github.com/xray-network/cloudflare-worker-output-load-balancer/blob/main/src/servers.conf.example.ts)
+### Edit [servers.conf.ts](https://github.com/xray-network/cloudflare-worker-turbo-tx-send/blob/main/src/servers.conf.example.ts)
 
 ```
 Configure settings for ogmios
