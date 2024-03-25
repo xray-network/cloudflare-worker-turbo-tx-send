@@ -15,7 +15,7 @@
 git clone \
   --recurse-submodules \
   https://github.com/xray-network/cloudflare-worker-turbo-tx-send/.git \
-  && cd cloudflare-worker-turbo-tx-send/
+  && cd cloudflare-worker-turbo-tx-send
 ```
 ``` console
 cp src/servers.conf.example.ts src/servers.conf.ts
