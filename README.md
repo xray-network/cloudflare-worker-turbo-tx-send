@@ -6,7 +6,7 @@
 > **DEPRECATED:** The tool has been moved to XRAY | Graph | Output, which is an internal proprietary XRAY project that acts as a load balancer and proxy tool for API management and documentation in OpenAPI format
 
 > [!NOTE]
-> XRAY | Graph | Turbo TX Send — Accelerating TXs sending for Cardano blockchain
+> XRAY | Graph | Turbo TX Send — Accelerating TXs sending for Cardano blockchain. Sending TXs to nodes that are evenly distributed geographically AND have a small queue in Mempool gives a higher probability of hitting the blockchain sooner
 
 ## Getting Started
 ### Prepare Installation
@@ -44,3 +44,13 @@ yarn start
 ```
 yarn deploy
 ```
+
+## Endpoints
+
+* Networks: `mainnet`, `preprod`, `preview`
+* CBOR_TX: CBOR encoded Cardano transaction, plain text in POST body
+
+| Method | Endpoint | Params | Description |
+| --- | --- | --- | --- |
+| GET | /turbo-tx-send/:network | | HTML send form |
+| POST | /turbo-tx-send/:network | CBOR_TX | HTML send form |
