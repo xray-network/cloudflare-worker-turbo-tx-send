@@ -1,12 +1,11 @@
 <a href="https://discord.gg/WhZmm46APN"><img alt="Discord" src="https://img.shields.io/discord/852538978946383893?style=for-the-badge&logo=discord&label=Discord&labelColor=%231940ED&color=%233FCB9B"></a>
 
-# XRAY | Graph | Turbo TX Send — Cloudflare Worker
+# XRAY/Graph Turbo TX Send — Cloudflare Worker
 
 > [!WARNING]
-> **DEPRECATED:** The tool has been moved to XRAY | Graph | Output, which is an internal proprietary XRAY project that acts as a load balancer and proxy tool for API access management and documentation in OpenAPI format
+> **DEPRECATED:** The tool has been moved to XRAY/Graph Output, which is an internal proprietary XRAY project that acts as a load balancer and proxy tool for API access management and documentation in OpenAPI format
 
-> [!NOTE]
-> XRAY | Graph | Turbo TX Send — Accelerating TXs sending for Cardano blockchain. Sending TXs to nodes that are evenly distributed geographically AND have a small queue in Mempool gives a higher probability of hitting the blockchain sooner
+XRAY/Graph Turbo TX Send — Accelerating TXs sending for Cardano blockchain. Sending TXs to nodes that are evenly distributed geographically AND have a small queue in Mempool gives a higher probability of hitting the blockchain sooner
 
 ## Getting Started
 ### Prepare Installation
